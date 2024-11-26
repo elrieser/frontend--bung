@@ -8,20 +8,3 @@
 >
 	{@render children()}
 </div>
-
-<div class="flex place-self-end bg-green-50">
-	<div class="flex place-self-end">
-		<div class="flex gap-1">
-			<p>Monthly Billing</p>
-
-			<input
-				type="checkbox"
-				class="toggle border-none bg-black [--tglbg:#a729f5] hover:bg-white
- "
-				checked="checked"
-			/>
-
-			<p>Yearly Billing</p>
-		</div>
-	</div>
-</div>
