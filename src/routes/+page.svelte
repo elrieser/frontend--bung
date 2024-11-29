@@ -40,10 +40,10 @@
 	<p class="text-sx">Sign-up for our 30-day trial. No credit card required.</p>
 </div>
 
-<div class="flex h-[300px] w-[500px] flex-col items-center justify-evenly rounded-md bg-white">
-	<div>
+<div class="flex h-[300px] w-[500px] rounded-md bg-white">
+	<div class="place-self-start">
 		<p>100K Pageviews</p>
-		<div>
+		<div class="place-self-end">
 			<p><b>$ {$price} </b>/{time}</p>
 		</div>
 		<div class="w-[400px] place-self-center">
@@ -72,7 +72,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="place-content-end text-xs">
+		<div class="place-self-end text-xs">
 			<ul class="list-disc">
 				<li>Unlimited websites</li>
 				<li>100% data ownership</li>
