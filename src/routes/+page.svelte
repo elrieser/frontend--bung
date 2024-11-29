@@ -22,15 +22,16 @@
 	}
 
 	function onSliderChange(event) {
-		price.update((n) => {
-			if (n + 1 > 32) {
-				return 32;
+		sliderValue = parseInt(event.target.value);
+		price.update(() => {
+			let basePrice = sliderValue / 1;
+			if (time === 'month') {
+				return basePrice > 32 ? 32 : basePrice;
 			} else {
-				return n + 1;
+				let yearlyPrice = basePrice * 12;
+				return yearlyPrice > 384 ? 384 : yearlyPrice;
 			}
 		});
-		sliderValue = price;
-		calculatePrice;
 	}
 </script>
 
