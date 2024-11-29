@@ -3,7 +3,7 @@
 
 	let time = 'month';
 	let price = writable(1);
-	let sliderValue = 1;
+	let sliderValue = 0;
 
 	function switchTime() {
 		if (time === 'month') {
@@ -15,15 +15,21 @@
 	}
 
 	function calculatePrice() {
-		let basePrice = 1;
+		let basePrice = sliderValue;
 		if (time === 'year') {
 			basePrice = basePrice * 12 * 0.75;
 		}
-		price.set(basePrice.toFixed(2));
 	}
 
 	function onSliderChange(event) {
-		sliderValue = event.target.value;
+		price.update((n) => {
+			if (n + 1 > 32) {
+				return 32;
+			} else {
+				return n + 1;
+			}
+		});
+		sliderValue = price;
 		calculatePrice;
 	}
 </script>
@@ -43,8 +49,8 @@
 			<input
 				type="range"
 				min="0"
-				max="100"
-				value="40"
+				max="32"
+				value={sliderValue}
 				class="range range-accent"
 				on:input={onSliderChange}
 			/>
