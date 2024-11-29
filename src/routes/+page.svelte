@@ -2,29 +2,29 @@
 	import { writable } from 'svelte/store';
 
 	let time = 'month';
-	let pricel = writable(1);
-	let price = 1;
+	let price = writable(1);
+	let sliderValue = 1;
 
 	function switchTime() {
 		if (time === 'month') {
 			time = 'year';
-			price = price * 12;
 		} else {
 			time = 'month';
-			price = price / 12;
 		}
+		calculatePrice;
 	}
 
-	function ChangePrice() {
-		pricel.update((n) => {
-			if (n + 1 > 32) {
-				return 32;
-			} else if (n + 1 > 384) {
-				return 384;
-			} else {
-				return n + 1;
-			}
-		});
+	function calculatePrice() {
+		let basePrice = 1;
+		if (time === 'year') {
+			basePrice = basePrice * 12 * 0.75;
+		}
+		price.set(basePrice.toFixed(2));
+	}
+
+	function onSliderChange(event) {
+		sliderValue = event.target.value;
+		calculatePrice;
 	}
 </script>
 
@@ -37,10 +37,17 @@
 	<div>
 		<p>100K Pageviews</p>
 		<div>
-			<p>$ {price} /{time}</p>
+			<p><b>$ {$price} </b>/{time}</p>
 		</div>
 		<div class="w-[400px] place-self-center">
-			<input type="range" min="0" max="100" value="40" class="range range-accent" />
+			<input
+				type="range"
+				min="0"
+				max="100"
+				value="40"
+				class="range range-accent"
+				on:input={onSliderChange}
+			/>
 		</div>
 		<div class="flex place-content-center">
 			<div class="flex place-self-end">
